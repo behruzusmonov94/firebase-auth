@@ -1,3 +1,22 @@
+
+
+
+//tracking
+
+auth.onAuthStateChanged(user =>{
+    if(user){
+        //get data
+        db.collection('guides').get().then(snapshot => {
+            setupGuides(snapshot.docs);
+            setupUI(user);
+        });
+    } else {
+        setupUI();
+        setupGuides([]);
+    }
+})
+
+
 //signup
 
 const signupForm = document.querySelector('#signup-form');
